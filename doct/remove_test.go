@@ -1,13 +1,12 @@
-package document
+package doct
 
 import (
-	doct "doct/internal/document"
 	"testing"
 )
 
 func TestRemoveTransaction_Apply(t *testing.T) {
 	type args struct {
-		doc *doct.Document
+		doc *Document
 	}
 	tests := []struct {
 		name string
@@ -48,7 +47,7 @@ func TestRemoveTransaction_Apply(t *testing.T) {
 
 func TestRemoveTransaction_Validate(t *testing.T) {
 	type args struct {
-		doc *doct.Document
+		doc *Document
 	}
 	tests := []struct {
 		name string

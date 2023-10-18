@@ -1,4 +1,4 @@
-package document
+package doct
 
 type ITransaction interface {
 	Apply(doc *Document)

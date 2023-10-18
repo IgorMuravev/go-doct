@@ -1,13 +1,12 @@
-package document
+package doct
 
 import (
-	doct "doct/internal/document"
 	"testing"
 )
 
 func TestEraseTransaction_Apply(t *testing.T) {
 	type args struct {
-		doc *doct.Document
+		doc *Document
 	}
 	tests := []struct {
 		name string
@@ -36,7 +35,7 @@ func TestEraseTransaction_Apply(t *testing.T) {
 
 func TestEraseTransaction_Validate(t *testing.T) {
 	type args struct {
-		doc *doct.Document
+		doc *Document
 	}
 	tests := []struct {
 		name string

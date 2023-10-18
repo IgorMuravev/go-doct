@@ -1,6 +1,4 @@
-package document
-
-import doct "doct/internal/document"
+package doct
 
 // InsertTransaction is a transaction which inserts some data into a specified position
 type InsertTransaction struct {
@@ -8,7 +6,7 @@ type InsertTransaction struct {
 	Data     []byte
 }
 
-func (tr *InsertTransaction) Apply(doc *doct.Document) {
+func (tr *InsertTransaction) Apply(doc *Document) {
 	data := make([]byte, doc.GetSize()+len(tr.Data))
 	copy(data[0:], doc.Data[:tr.Position])
 	copy(data[tr.Position:], tr.Data)
@@ -16,7 +14,7 @@ func (tr *InsertTransaction) Apply(doc *doct.Document) {
 	doc.Data = data
 }
 
-func (tr *InsertTransaction) Validate(doc *doct.Document) bool {
+func (tr *InsertTransaction) Validate(doc *Document) bool {
 	return doc != nil &&
 		tr.Data != nil &&
 		len(tr.Data) > 0 &&

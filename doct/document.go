@@ -1,4 +1,4 @@
-package document
+package doct
 
 import "errors"
 
@@ -9,7 +9,7 @@ type Document struct {
 
 func (doc *Document) Apply(tr ITransaction) error {
 	if !tr.Validate(doc) {
-		return errors.New("Invalid transaction")
+		return errors.New("invalid transaction")
 	}
 
 	tr.Apply(doc)
