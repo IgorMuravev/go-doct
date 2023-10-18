@@ -1,13 +1,19 @@
 package document
 
+import "errors"
+
 type Document struct {
 	Name string
 	Data []byte
 }
 
-func (doc *Document) Apply(tr ITransaction) *Document {
-	doc = tr.Apply(doc)
-	return doc
+func (doc *Document) Apply(tr ITransaction) error {
+	if !tr.Validate(doc) {
+		return errors.New("Invalid transaction")
+	}
+
+	tr.Apply(doc)
+	return nil
 }
 
 func (doc *Document) GetSize() int {

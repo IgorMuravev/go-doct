@@ -8,14 +8,16 @@ type RemoveTransaction struct {
 	Count    int
 }
 
-func (tr *RemoveTransaction) Apply(doc *doct.Document) *doct.Document {
-	data := make([]byte, 0, doc.GetSize()-tr.Count)
+func (tr *RemoveTransaction) Apply(doc *doct.Document) {
+	data := make([]byte, doc.GetSize()-tr.Count)
 	copy(data, doc.Data[:tr.Position])
 	copy(data[tr.Position:], doc.Data[tr.Position+tr.Count:])
 	doc.Data = data
-	return doc
 }
 
 func (tr *RemoveTransaction) Validate(doc *doct.Document) bool {
-	return doc.GetSize() >= tr.Position+tr.Count
+	return doc != nil &&
+		tr.Position >= 0 &&
+		tr.Count > 0 &&
+		doc.GetSize() >= tr.Position+tr.Count
 }

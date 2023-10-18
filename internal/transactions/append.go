@@ -7,11 +7,12 @@ type AppendTransaction struct {
 	Data []byte
 }
 
-func (tr *AppendTransaction) Apply(doc *doct.Document) *doct.Document {
+func (tr *AppendTransaction) Apply(doc *doct.Document) {
 	doc.Data = append(doc.Data, tr.Data...)
-	return doc
 }
 
 func (tr *AppendTransaction) Validate(doc *doct.Document) bool {
-	return true
+	return doc != nil &&
+		tr.Data != nil &&
+		len(tr.Data) > 0
 }
